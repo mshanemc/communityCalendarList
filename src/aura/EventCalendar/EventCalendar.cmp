@@ -1,0 +1,42 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes" access="global" controller="EventCalendarController" >
+    
+    <ltng:require styles="/resource/anythingSLDS201/assets/styles/salesforce-lightning-design-system.css"/>
+    
+    <aura:attribute name="eventType" required="false" type="string"/>
+    <aura:attribute name="results" required="false" type="event[]"/>
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    
+    <table class="slds-table slds-table--bordered slds-table--cell-buffer">
+        <thead>
+            <tr class="slds-text-heading--label">
+                <th scope="col" title="Date">Date</th>
+                <th scope="col" title="Event">Event</th>
+                <!--add more columns-->
+                <th scope="col" ></th> <!--blank column for the button-->
+                
+            </tr>
+        </thead>
+        <tbody>
+            
+            <aura:iteration items="{!v.results}" var="result">   
+                <tr>
+                    <td data-label="Date" title="">
+                        <div class="slds-truncate">{!result.ActivityDate}</div>
+                    </td>
+                    <td data-label="Date" title="">
+                        <div><a href="{!'detail/' + result.Id}">{!result.Subject}</a></div>
+                    </td>
+                    <!--add more columns-->
+                    
+                    <td>
+                        <button class="slds-button slds-button--neutral">Add to Outlook</button>
+                    </td>
+                </tr>
+                
+                
+            </aura:iteration>
+        </tbody> 
+    </table> 
+    
+</aura:component>
